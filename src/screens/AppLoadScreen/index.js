@@ -4,6 +4,7 @@ import React, { useEffect, useContext } from 'react';
 
 // Context Imports
 import { Context as AppLoadContext } from '../../context/AppLoadContext';
+import { Context as AuthContext } from '../../context/AuthContext';
 
 // App Imports
 import { log } from '../../utils/logger';
@@ -12,12 +13,13 @@ const AppLoadScreen = () => {
   log.info('App load screen initialized!');
 
   const { updateAppLoadFlag } = useContext(AppLoadContext);
+  const { autoSignIn } = useContext(AuthContext);
 
   useEffect(() => {
     const appLoad = async () => {
       try {
-        log.info('Getting stored cart');
-        // await getStoredCart();
+        log.info('Getting stored auth info');
+        await autoSignIn();
         log.info('Setting app load flag to true');
         updateAppLoadFlag(true);
       } catch (err) {

@@ -114,7 +114,13 @@
 // export default App;
 import React from 'react';
 import { AppContainer } from './src/routes';
+import { Provider as AppLoadProvider } from './src/context/AppLoadContext';
+import { Provider as AuthProvider } from './src/context/AuthContext';
 
 export default () => (
-  <AppContainer />
+  <AppLoadProvider>
+    <AuthProvider>
+      <AppContainer />
+    </AuthProvider>
+  </AppLoadProvider>
 );
