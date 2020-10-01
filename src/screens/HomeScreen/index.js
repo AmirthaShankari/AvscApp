@@ -1,6 +1,7 @@
 // React Imports
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // App Imports
 import { AppMessages } from '../../constants/AppMessages';
@@ -13,6 +14,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.mainContainer}>
       <Text>{MESSAGES.TITLE}</Text>
+      <Icon name="add-outline" size={30} color="#900" />
       <Text style={{ fontFamily: 'Roboto-Bold' }}>Roboto</Text>
     </View>
   );

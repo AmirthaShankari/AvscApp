@@ -113,14 +113,18 @@
 
 // export default App;
 import React from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AppContainer } from './src/routes';
 import { Provider as AppLoadProvider } from './src/context/AppLoadContext';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 
-export default () => (
-  <AppLoadProvider>
-    <AuthProvider>
-      <AppContainer />
-    </AuthProvider>
-  </AppLoadProvider>
-);
+export default () => {
+  Ionicons.loadFont();
+  return (
+    <AppLoadProvider>
+      <AuthProvider>
+        <AppContainer />
+      </AuthProvider>
+    </AppLoadProvider>
+  );
+};
