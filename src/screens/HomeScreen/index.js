@@ -1,27 +1,48 @@
 // React Imports
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { useEffect, useState } from 'react';
+import { View, SafeAreaView } from 'react-native';
 
 // App Imports
-import { AppMessages } from '../../constants/AppMessages';
-import { CommonStyles } from '../../themes';
+import { styles } from './styles';
 import { log } from '../../utils/logger';
 
+// Component Imports
+import { Header, HomeTabs } from '../../components';
+import { AppConstants } from '../../constants/AppConstants';
+
+// Constants Declaration
+const APP_CONST = AppConstants.SCREENS.HOME_SCREEN;
+
 const HomeScreen = () => {
-  const MESSAGES = AppMessages.SCREENS.HOME;
-  log.info('Logger check!!');
+  log.info('Rendering Home Screen....');
+
+  // State Declaration
+  const [selectedTab, setSelectedTab] = useState('');
+
+  useEffect(() => {
+    // Setting the default tab selection
+    if (!selectedTab) {
+      const defaultTab = APP_CONST.TABS.find((tab) => tab.DEFAULT);
+      setSelectedTab(defaultTab.KEY);
+    }
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
-      <Text>{MESSAGES.TITLE}</Text>
-      <Icon name="add-outline" size={30} color="#900" />
-      <Text style={{ fontFamily: 'Roboto-Bold' }}>Roboto</Text>
+      <SafeAreaView>
+        <Header
+          showBack={false}
+          showLogo
+          showProfile
+        />
+        <HomeTabs
+          tabs={APP_CONST.TABS}
+          selectedTab={selectedTab}
+          updateTabSelection={(tab) => setSelectedTab(tab)}
+        />
+      </SafeAreaView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  ...CommonStyles.screen,
-});
 
 export default HomeScreen;
