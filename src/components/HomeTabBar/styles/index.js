@@ -3,6 +3,14 @@ import { Colors, CommonStyles, Metrics } from '../../../themes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const styles = StyleSheet.create({
+  containerHeader: {
+    flexDirection: 'column',
+    backgroundColor: Colors.white
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap'
+  },
   tab: {
     display: 'flex',
     alignItems: 'center',
@@ -12,7 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: Colors.white,
     marginVertical: Metrics.margin_3,
-    marginRight: Metrics.margin_2,
+    marginLeft: Metrics.margin_2,
     shadowColor: Colors.grey,
     shadowOffset: {
       width: 0,
@@ -26,7 +34,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.royal_blue,
     shadowColor: Colors.royal_blue,
     shadowOpacity: 0.36,
-    elevation: 24
+    elevation: 30
   },
   title: {
     ...CommonStyles.fontWeights.w500,

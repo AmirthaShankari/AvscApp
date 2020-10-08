@@ -4,6 +4,33 @@ export const AppConstants = {
     APP_LOAD: 'AppLoad',
     LOGIN: 'Login',
     HOME: 'Home',
+    HOME_TABS: {
+      ALERTS: {
+        ROUTE: 'Alerts',
+        DISPLAY_NAME: 'Alerts',
+        ICON: 'notifications-outline',
+      },
+      TRAFFIC: {
+        ROUTE: 'Traffic',
+        DISPLAY_NAME: 'Traffic',
+        ICON: 'shuffle-outline',
+      },
+      TASK: {
+        ROUTE: 'Task',
+        DISPLAY_NAME: 'Tasks',
+        ICON: 'checkmark-circle-outline',
+      },
+      OPTIONS: {
+        ROUTE: 'Option',
+        DISPLAY_NAME: 'Options',
+        ICON: 'options-outline',
+      },
+      BUGS: {
+        ROUTE: 'Bug',
+        DISPLAY_NAME: 'Bugs',
+        ICON: 'bug-outline',
+      },
+    }
   },
   LOCAL_STORAGE: {
     AUTH_INFO: 'authInfo'
@@ -20,6 +47,9 @@ export const AppConstants = {
       UPDATE_NAME: 'updateName',
       AUTH_ERROR: 'authError'
     }
+  },
+  COMPONENTS: {
+
   },
   SCREENS: {
     HOME_SCREEN: {

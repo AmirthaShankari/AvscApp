@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const LikesScreen = () => (
+const TrafficScreen = () => (
   <View
     style={{ justifyContent: 'center', alignItems: 'center', height: 400 }}
   >
-    <Text>I am the Likes screen</Text>
+    <Text>I am the Traffic screen</Text>
   </View>
 );
 
-export default LikesScreen;
+export default TrafficScreen;

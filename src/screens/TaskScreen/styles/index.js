@@ -3,9 +3,16 @@ import { Colors, CommonStyles, Metrics } from '../../../themes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const styles = StyleSheet.create({
+  taskScreenContainer: {
+    ...CommonStyles.screen.mainContainer
+  },
   teamAndProjectWrapper: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: Colors.white,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: Colors.grey_light
   },
   selectionItem: {
     flex: 1,

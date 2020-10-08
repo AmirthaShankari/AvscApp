@@ -1,7 +1,7 @@
 // React Imports
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  View, Text
+  View
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -10,7 +10,7 @@ import { styles } from './styles';
 import { log } from '../../utils/logger';
 import { Colors } from '../../themes';
 
-const TasksTab = () => {
+const TaskScreen = () => {
   log.info('Task Tab component rendered...');
 
   // State Declarations
@@ -53,4 +53,4 @@ const TasksTab = () => {
   );
 };
 
-export default React.memo(TasksTab);
+export default React.memo(TaskScreen);
