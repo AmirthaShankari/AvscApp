@@ -2,15 +2,14 @@
 // React Imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, Text, ActivityIndicator
+  View, ActivityIndicator
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 // App Imports
 import { styles } from './styles';
 import { log } from '../../utils/logger';
-import { ProjectAndTeamSelection } from '../../components';
+import { ProjectAndTeamSelection, TeamMembersSelection, TeamMemberDetails } from '../../components';
 import { AppConstants } from '../../constants/AppConstants';
 
 const TaskScreen = () => {
@@ -23,6 +22,7 @@ const TaskScreen = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState('');
   const [selectedProject, setSelectedProject] = useState('');
+  const [selectedMember, setSelectedMember] = useState('');
 
   /**
    * Function to fetch the list of projects available
@@ -78,6 +78,7 @@ const TaskScreen = () => {
         const selectedProj = projectsAndTeams.find((proj) => proj.id === selectedProject);
         const selectedProjTeam = selectedProj.teams.find((team) => team.id === selectedTeam);
         setTeamMembers(selectedProjTeam.members);
+        setSelectedMember('');
       }
     };
     setMembersBasedOnTeam();
@@ -86,14 +87,22 @@ const TaskScreen = () => {
   return (
     <View style={styles.taskScreenContainer}>
       {(projectsAndTeams) ? (
-        <ProjectAndTeamSelection
-          projects={projects}
-          teams={teams}
-          selectedProject={selectedProject}
-          selectedTeam={selectedTeam}
-          onProjectSelection={(proj) => setSelectedProject(proj.value)}
-          onTeamSelection={(team) => setSelectedTeam(team.value)}
-        />
+        <View style={{ position: 'absolute', zIndex: 0 }}>
+          <ProjectAndTeamSelection
+            projects={projects}
+            teams={teams}
+            selectedProject={selectedProject}
+            selectedTeam={selectedTeam}
+            onProjectSelection={(proj) => setSelectedProject(proj.value)}
+            onTeamSelection={(team) => setSelectedTeam(team.value)}
+          />
+          <TeamMembersSelection
+            teamMembers={teamMembers}
+            selectedMember={selectedMember}
+            setMemberSelection={(member) => setSelectedMember(member)}
+          />
+          <TeamMemberDetails selectedMember={selectedMember} />
+        </View>
       ) : <ActivityIndicator style={styles.inlineLoader} /> }
     </View>
   );

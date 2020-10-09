@@ -3,10 +3,14 @@ import Input from './shared/Input';
 import Header from './shared/Header';
 import HomeTabBar from './HomeTabBar';
 import ProjectAndTeamSelection from './ProjectAndTeamSelection';
+import TeamMembersSelection from './TeamMembersSelection';
+import TeamMemberDetails from './TeamMemberDetails';
 
 export {
   Input,
   Header,
   HomeTabBar,
-  ProjectAndTeamSelection
+  ProjectAndTeamSelection,
+  TeamMembersSelection,
+  TeamMemberDetails
 };

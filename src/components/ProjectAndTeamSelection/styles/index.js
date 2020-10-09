@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: Colors.grey_light
+    borderColor: Colors.grey_light,
+    zIndex: 1
   },
   selectionItem: {
     flex: 1,

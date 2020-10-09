@@ -8,7 +8,8 @@ const colors = {
   grey_light: '#cacaca',
   blue_grey: '#D4DbEA',
   royal_blue: '#3F3EE9',
-  red: '#D23833'
+  red: '#D23833',
+  green: '#88D886'
 };
 
 export default colors;
