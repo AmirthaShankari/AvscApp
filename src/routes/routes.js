@@ -13,8 +13,6 @@ import { Context as AppLoadContext } from '../context/AppLoadContext';
 import { Context as AuthContext } from '../context/AuthContext';
 
 // App Screens Imports
-// import HomeScreen from '../screens/HomeScreen';
-// import TestTabScreen from '../screens/TestTabScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AppLoadScreen from '../screens/AppLoadScreen';
 import AlertsScreen from '../screens/AlertsScreen';

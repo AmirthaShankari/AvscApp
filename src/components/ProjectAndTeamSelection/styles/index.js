@@ -3,9 +3,6 @@ import { Colors, CommonStyles, Metrics } from '../../../themes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const styles = StyleSheet.create({
-  taskScreenContainer: {
-    ...CommonStyles.screen.mainContainer
-  },
   teamAndProjectWrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -38,8 +35,5 @@ export const styles = StyleSheet.create({
   },
   labelStyleRight: {
     textAlign: 'right',
-  },
-  inlineLoader: {
-    ...CommonStyles.loader.inlineLoader
   }
 });
