@@ -5,6 +5,7 @@ import HomeTabBar from './HomeTabBar';
 import ProjectAndTeamSelection from './ProjectAndTeamSelection';
 import TeamMembersSelection from './TeamMembersSelection';
 import TeamMemberDetails from './TeamMemberDetails';
+import TasksList from './TasksList';
 
 export {
   Input,
@@ -12,5 +13,6 @@ export {
   HomeTabBar,
   ProjectAndTeamSelection,
   TeamMembersSelection,
-  TeamMemberDetails
+  TeamMemberDetails,
+  TasksList
 };

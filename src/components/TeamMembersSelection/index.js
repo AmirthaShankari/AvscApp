@@ -17,11 +17,11 @@ const TeamMembersSelection = ({
   log.info('Team members selection component rendered...');
 
   const renderItem = ({ item, index }) => (
-    <View style={[styles.imageWrapperScale, { display: 'flex', alignItems: 'center', justifyContent: 'center' }]}>
+    <View style={[styles.imageWrapperScale, styles.wrapper]}>
       <TouchableOpacity onPress={() => { if (index < 4) { setMemberSelection(item); } }}>
         <View
-          style={[styles.imageWrapper,
-            (selectedMember && selectedMember.id === item.id) ? styles.imageWrapperScale : null]}
+          style={[(selectedMember && selectedMember.id === item.id)
+            ? styles.imageWrapperScale : styles.imageWrapper]}
         >
           {(index < 4) ? (
             <Image
@@ -31,8 +31,8 @@ const TeamMembersSelection = ({
               }}
             />
           ) : ((index === 4) ? (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Text>
+            <View style={styles.remainingCountWrapper}>
+              <Text style={styles.remainingCount}>
                 {`+${(teamMembers.length - 4)}`}
               </Text>
             </View>

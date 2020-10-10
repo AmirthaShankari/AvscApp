@@ -2,14 +2,16 @@
 // React Imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, ActivityIndicator
+  View, ActivityIndicator, Text
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 // App Imports
 import { styles } from './styles';
 import { log } from '../../utils/logger';
-import { ProjectAndTeamSelection, TeamMembersSelection, TeamMemberDetails } from '../../components';
+import {
+  ProjectAndTeamSelection, TeamMembersSelection, TeamMemberDetails, TasksList
+} from '../../components';
 import { AppConstants } from '../../constants/AppConstants';
 
 const TaskScreen = () => {
@@ -23,6 +25,7 @@ const TaskScreen = () => {
   const [selectedTeam, setSelectedTeam] = useState('');
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedMember, setSelectedMember] = useState('');
+  const [tasksList, setTasksList] = useState([]);
 
   /**
    * Function to fetch the list of projects available
@@ -84,6 +87,26 @@ const TaskScreen = () => {
     setMembersBasedOnTeam();
   }, [selectedTeam]);
 
+  /**
+   * set the tasks based on selected member
+   */
+  useEffect(() => {
+    const setTasksBasedOnMember = async () => {
+      if (projectsAndTeams && selectedProject && selectedTeam && selectedMember) {
+        const tasks = AppConstants.DATA.TASKS.filter((task) => task.project === selectedProject);
+        const selectedMemberTasks = tasks.filter((task) => {
+          const isPresent = task.profiles.find((member) => member.id === selectedMember.id);
+          if (isPresent) {
+            return true;
+          }
+          return false;
+        });
+        setTasksList(selectedMemberTasks);
+      }
+    };
+    setTasksBasedOnMember();
+  }, [selectedMember]);
+
   return (
     <View style={styles.taskScreenContainer}>
       {(projectsAndTeams) ? (
@@ -102,6 +125,7 @@ const TaskScreen = () => {
             setMemberSelection={(member) => setSelectedMember(member)}
           />
           <TeamMemberDetails selectedMember={selectedMember} />
+          <TasksList selectedMember={selectedMember} tasksList={tasksList} />
         </View>
       ) : <ActivityIndicator style={styles.inlineLoader} /> }
     </View>
