@@ -41,5 +41,9 @@ export const styles = StyleSheet.create({
   },
   inlineLoader: {
     ...CommonStyles.loader.inlineLoader
+  },
+  projectInfoWrapper: {
+    position: 'relative',
+    zIndex: 0
   }
 });

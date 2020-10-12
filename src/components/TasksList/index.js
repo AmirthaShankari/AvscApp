@@ -1,10 +1,11 @@
 /* eslint-disable no-nested-ternary */
 // React Imports
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  View, Text, FlatList, Image
+  View, Text, FlatList, Image, TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { TaskDetailModal } from '../../modals';
 import { Colors } from '../../themes';
 
 // App Imports
@@ -16,6 +17,9 @@ const TasksList = ({
   tasksList
 }) => {
   log.info('tasks list component rendered...', tasksList);
+
+  // State Declarations
+  const [modalVisible, setModalVisible] = useState(false);
 
   const renderProfiles = ({ item }) => (
     <View style={styles.profileImgWrapper}>
@@ -29,10 +33,15 @@ const TasksList = ({
   );
 
   const renderItem = ({ item }) => (
-    <View style={styles.taskWrapper}>
+    <TouchableOpacity onLongPress={() => setModalVisible(true)} style={styles.taskWrapper}>
+      <TaskDetailModal
+        task={item}
+        modalVisible={modalVisible}
+        modalDismiss={() => setModalVisible(false)}
+      />
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text>{item.shortDate}</Text>
+        <Text style={styles.textStyle}>{item.shortDate}</Text>
       </View>
       <View>
         <Text style={styles.desc}>
@@ -42,9 +51,9 @@ const TasksList = ({
       <View style={styles.statusAndProfilesWrapper}>
         <View style={styles.statusWrapper}>
           <Icon name="chatbubble-outline" size={20} color={Colors.green} />
-          <Text style={styles.statusPadding}>{item.comments}</Text>
+          <Text style={[styles.statusPadding, styles.textStyle]}>{item.comments}</Text>
           <Icon style={styles.statusPadding} name="list-outline" size={20} color={Colors.orange} />
-          <Text style={styles.statusPadding}>{`${item.completedTasks}/${item.totalSubTasks}`}</Text>
+          <Text style={[styles.statusPadding, styles.textStyle]}>{`${item.completedTasks}/${item.totalSubTasks}`}</Text>
         </View>
         <View>
           <FlatList
@@ -57,7 +66,7 @@ const TasksList = ({
           />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -66,8 +75,6 @@ const TasksList = ({
         <FlatList
           scrollEnabled
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 700 }}
-          automaticallyAdjustContentInsets
           data={tasksList}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}

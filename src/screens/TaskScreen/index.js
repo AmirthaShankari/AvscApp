@@ -2,7 +2,7 @@
 // React Imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, ActivityIndicator
+  View, ActivityIndicator, ScrollView
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -109,7 +109,7 @@ const TaskScreen = () => {
           task.completedTasks = (completedSubTask && completedSubTask.length > 0)
             ? completedSubTask.length : 0;
           const date = new Date(task.createdDate);
-          const shortDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+          const shortDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
           // eslint-disable-next-line no-param-reassign
           task.shortDate = shortDate;
         });
@@ -121,23 +121,25 @@ const TaskScreen = () => {
   return (
     <View style={styles.taskScreenContainer}>
       {(projectsAndTeams) ? (
-        <View style={{ position: 'absolute', zIndex: 0, paddingBottom: 700 }}>
-          <ProjectAndTeamSelection
-            projects={projects}
-            teams={teams}
-            selectedProject={selectedProject}
-            selectedTeam={selectedTeam}
-            onProjectSelection={(proj) => setSelectedProject(proj.value)}
-            onTeamSelection={(team) => setSelectedTeam(team.value)}
-          />
-          <TeamMembersSelection
-            teamMembers={teamMembers}
-            selectedMember={selectedMember}
-            setMemberSelection={(member) => setSelectedMember(member)}
-          />
-          <TeamMemberDetails selectedMember={selectedMember} />
+        <ScrollView>
+          <View style={styles.projectInfoWrapper}>
+            <ProjectAndTeamSelection
+              projects={projects}
+              teams={teams}
+              selectedProject={selectedProject}
+              selectedTeam={selectedTeam}
+              onProjectSelection={(proj) => setSelectedProject(proj.value)}
+              onTeamSelection={(team) => setSelectedTeam(team.value)}
+            />
+            <TeamMembersSelection
+              teamMembers={teamMembers}
+              selectedMember={selectedMember}
+              setMemberSelection={(member) => setSelectedMember(member)}
+            />
+            <TeamMemberDetails selectedMember={selectedMember} />
+          </View>
           <TasksList selectedMember={selectedMember} tasksList={tasksList} />
-        </View>
+        </ScrollView>
       ) : <ActivityIndicator style={styles.inlineLoader} /> }
     </View>
   );

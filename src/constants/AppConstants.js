@@ -397,7 +397,7 @@ export const AppConstants = {
       {
         id: 'Task3',
         project: 'Proj1',
-        title: 'Product Page UX research',
+        title: 'Product Page UX research 1',
         createdDate: 'July 1, 2016 9:43 AM',
         timeTracked: {
           hours: 12,

@@ -29,6 +29,11 @@ export const styles = StyleSheet.create({
     paddingBottom: Metrics.padding_2,
     maxHeight: 300,
   },
+  textStyle: {
+    ...CommonStyles.fontWeights.w400,
+    fontSize: 12,
+    color: Colors.black
+  },
   title: {
     ...CommonStyles.heading.h5,
     color: Colors.black
