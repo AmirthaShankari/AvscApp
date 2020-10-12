@@ -2,7 +2,7 @@
 // React Imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, ActivityIndicator, Text
+  View, ActivityIndicator
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -101,16 +101,27 @@ const TaskScreen = () => {
           }
           return false;
         });
+        selectedMemberTasks.forEach((task) => {
+          const completedSubTask = task.subTasks.filter((subTask) => subTask.done);
+          // eslint-disable-next-line no-param-reassign
+          task.totalSubTasks = task.subTasks.length;
+          // eslint-disable-next-line no-param-reassign
+          task.completedTasks = (completedSubTask && completedSubTask.length > 0)
+            ? completedSubTask.length : 0;
+          const date = new Date(task.createdDate);
+          const shortDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+          // eslint-disable-next-line no-param-reassign
+          task.shortDate = shortDate;
+        });
         setTasksList(selectedMemberTasks);
       }
     };
     setTasksBasedOnMember();
   }, [selectedMember]);
-
   return (
     <View style={styles.taskScreenContainer}>
       {(projectsAndTeams) ? (
-        <View style={{ position: 'absolute', zIndex: 0 }}>
+        <View style={{ position: 'absolute', zIndex: 0, paddingBottom: 700 }}>
           <ProjectAndTeamSelection
             projects={projects}
             teams={teams}

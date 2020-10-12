@@ -2,7 +2,7 @@
 // React Imports
 import React from 'react';
 import {
-  View, Text, FlatList
+  View, Text, FlatList, Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../themes';
@@ -17,11 +17,22 @@ const TasksList = ({
 }) => {
   log.info('tasks list component rendered...', tasksList);
 
+  const renderProfiles = ({ item }) => (
+    <View style={styles.profileImgWrapper}>
+      <Image
+        style={styles.profileImg}
+        source={{
+          uri: item.image,
+        }}
+      />
+    </View>
+  );
+
   const renderItem = ({ item }) => (
     <View style={styles.taskWrapper}>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text>test</Text>
+        <Text>{item.shortDate}</Text>
       </View>
       <View>
         <Text style={styles.desc}>
@@ -33,7 +44,17 @@ const TasksList = ({
           <Icon name="chatbubble-outline" size={20} color={Colors.green} />
           <Text style={styles.statusPadding}>{item.comments}</Text>
           <Icon style={styles.statusPadding} name="list-outline" size={20} color={Colors.orange} />
-          <Text style={styles.statusPadding}>7/11</Text>
+          <Text style={styles.statusPadding}>{`${item.completedTasks}/${item.totalSubTasks}`}</Text>
+        </View>
+        <View>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled
+            data={item.profiles}
+            renderItem={renderProfiles}
+            keyExtractor={(profile) => profile.id}
+          />
         </View>
       </View>
     </View>
@@ -41,12 +62,18 @@ const TasksList = ({
 
   return (
     (selectedMember && tasksList.length > 0) ? (
-      <FlatList
-        scrollEnabled
-        data={tasksList}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={{ zIndex: 1 }}>
+        <FlatList
+          scrollEnabled
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 700 }}
+          automaticallyAdjustContentInsets
+          data={tasksList}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+
     ) : <Text>Noting to render</Text>
   );
 };

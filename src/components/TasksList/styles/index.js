@@ -3,6 +3,9 @@ import { Colors, CommonStyles, Metrics } from '../../../themes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const styles = StyleSheet.create({
+  extraPadding: {
+    paddingBottom: Metrics.padding_3 * 15
+  },
   taskWrapper: {
     padding: Metrics.padding_2,
     margin: Metrics.margin_2,
@@ -23,7 +26,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    paddingBottom: Metrics.padding_2
+    paddingBottom: Metrics.padding_2,
+    maxHeight: 300,
   },
   title: {
     ...CommonStyles.heading.h5,
@@ -49,5 +53,15 @@ export const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
+  },
+  profileImgWrapper: {
+    width: 30,
+    height: 30,
+    borderRadius: 5,
+    overflow: 'hidden',
+    marginRight: Metrics.margin_1 / 2
+  },
+  profileImg: {
+    flex: 1
   }
 });
