@@ -14,7 +14,9 @@ const Header = (
   {
     showBack = true,
     showLogo = true,
-    showProfile = true
+    showProfile = true,
+    onProfilePress,
+    onBackPress
   }
 ) => {
   log.info('Header component rendered...');
@@ -23,6 +25,7 @@ const Header = (
       <TouchableOpacity
         disabled={!(showBack)}
         style={(showBack) ? styles.display : styles.hide}
+        onPress={onBackPress}
       >
         <Icon name="arrow-back-outline" size={30} color={Colors.black} />
       </TouchableOpacity>
@@ -34,6 +37,7 @@ const Header = (
       <TouchableOpacity
         disabled={!(showProfile)}
         style={(showProfile) ? styles.display : styles.hide}
+        onPress={onProfilePress}
       >
         <View style={styles.profile} />
       </TouchableOpacity>

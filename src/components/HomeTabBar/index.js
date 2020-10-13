@@ -10,6 +10,9 @@ import { log } from '../../utils/logger';
 import Header from '../shared/Header';
 import { Colors } from '../../themes';
 import { styles } from './styles';
+import { AppConstants } from '../../constants/AppConstants';
+
+const APP_CONST = AppConstants.ROUTES;
 
 const HomeTabBar = ({
   state, descriptors, navigation
@@ -22,6 +25,7 @@ const HomeTabBar = ({
         showBack={false}
         showLogo
         showProfile
+        onProfilePress={() => navigation.navigate(APP_CONST.USER_PROFILE)}
       />
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.tabContainer}>

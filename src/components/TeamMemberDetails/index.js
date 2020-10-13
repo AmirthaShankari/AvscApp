@@ -5,14 +5,15 @@ import {
   View, Text
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Colors } from '../../themes';
 
 // App Imports
 import { log } from '../../utils/logger';
 import { styles } from './styles';
+import { Colors } from '../../themes';
 
 const TeamMemberDetails = ({
-  selectedMember
+  selectedMember,
+  tasksList
 }) => {
   log.info('Team members details component rendered...');
 
@@ -20,7 +21,9 @@ const TeamMemberDetails = ({
     (selectedMember) ? (
       <View style={styles.teamMemberDetailsWrapper}>
         <View style={styles.detailWrapper}>
-          <Text style={styles.tasksCount}>35</Text>
+          <Text style={styles.tasksCount}>
+            {(tasksList && tasksList.length) ? tasksList.length : 0}
+          </Text>
           <Text style={styles.subDetail}>Tasks</Text>
         </View>
         <View style={styles.detailWrapper}>

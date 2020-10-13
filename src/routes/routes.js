@@ -21,6 +21,7 @@ import TaskScreen from '../screens/TaskScreen';
 import OptionScreen from '../screens/OptionScreen';
 import TrafficScreen from '../screens/TrafficScreen';
 import { HomeTabBar } from '../components';
+import UserProfileScreen from '../screens/UserProfileScreen';
 
 export default () => {
   const APP_CONST = AppConstants.ROUTES;
@@ -73,7 +74,10 @@ export default () => {
           }}
         >
           {isAppLoadComplete ? (authName ? (
-            <Stack.Screen name={APP_CONST.HOME} component={TabBarNavigation} />
+            <>
+              <Stack.Screen name={APP_CONST.HOME} component={TabBarNavigation} />
+              <Stack.Screen name={APP_CONST.USER_PROFILE} component={UserProfileScreen} />
+            </>
           ) : (
             <Stack.Screen name={APP_CONST.LOGIN} component={LoginScreen} />
           )) : (

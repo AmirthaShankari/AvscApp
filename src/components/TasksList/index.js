@@ -2,21 +2,29 @@
 // React Imports
 import React, { useState } from 'react';
 import {
-  View, Text, FlatList, Image, TouchableOpacity
+  View, Text, FlatList, Image, TouchableOpacity,
+  LogBox
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { TaskDetailModal } from '../../modals';
-import { Colors } from '../../themes';
 
 // App Imports
 import { log } from '../../utils/logger';
 import { styles } from './styles';
+import { TaskDetailModal } from '../../modals';
+import { Colors } from '../../themes';
+import { AppMessages } from '../../constants/AppMessages';
+
+const APP_MSG = AppMessages.COMPONENTS.TASKS_LIST;
 
 const TasksList = ({
   selectedMember,
   tasksList
 }) => {
   log.info('tasks list component rendered...', tasksList);
+
+  LogBox.ignoreLogs([
+    'VirtualizedLists should never be nested',
+  ]);
 
   // State Declarations
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,26 +77,30 @@ const TasksList = ({
   );
 
   return (
-    (selectedMember && tasksList.length > 0) ? (
-      <View style={{ zIndex: 1 }}>
-        <FlatList
-          scrollEnabled
-          showsVerticalScrollIndicator={false}
-          data={tasksList}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-        {(modalVisible && selectedTask) ? (
-          <TaskDetailModal
-            task={selectedTask}
-            modalVisible={modalVisible}
-            modalDismiss={() => { setModalVisible(false); setSelectedTask(''); }}
+    (selectedMember) ? (
+      (tasksList.length > 0) ? (
+        <View style={{ zIndex: 1 }}>
+          <FlatList
+            scrollEnabled
+            showsVerticalScrollIndicator={false}
+            data={tasksList}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
           />
+          {(modalVisible && selectedTask) ? (
+            <TaskDetailModal
+              task={selectedTask}
+              modalVisible={modalVisible}
+              modalDismiss={() => { setModalVisible(false); setSelectedTask(''); }}
+            />
+          )
+            : null}
+        </View>
+      )
+        : (
+          <Text style={styles.noTasks}>{APP_MSG.NO_TASKS}</Text>
         )
-          : null}
-      </View>
-
-    ) : <Text>Noting to render</Text>
+    ) : null
   );
 };
 

@@ -68,5 +68,12 @@ export const styles = StyleSheet.create({
   },
   profileImg: {
     flex: 1
+  },
+  noTasks: {
+    ...CommonStyles.fontWeights.w400,
+    fontSize: 20,
+    color: Colors.grey_light,
+    textAlign: 'center',
+    paddingVertical: Metrics.padding_3 * 2
   }
 });

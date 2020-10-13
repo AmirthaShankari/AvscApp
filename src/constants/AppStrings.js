@@ -4,6 +4,9 @@ export const AppStrings = {
     LOGIN: {
       LOGIN_BUTTON: 'Let\'s get started!',
       FORGET_PASSWORD: 'Did you forget your password?'
+    },
+    USER_PROFILE: {
+      SIGN_OUT: 'Sign Out'
     }
   },
 };

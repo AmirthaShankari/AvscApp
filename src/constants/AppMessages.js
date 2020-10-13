@@ -4,12 +4,20 @@ export const AppMessages = {
     HOME: {
       TITLE: 'Home',
     },
+    USER_PROFILE: {
+      UNDER_CONSTRUCTION: 'Page under construction'
+    }
   },
   CONTEXTS: {
     AUTH_CONTEXT: {
       INVALID_CRED: 'Invalid Credentials.',
       FIELDS_REQUIRED: 'Username and password is required',
       SOMETHING_WENT_WRONG: 'Something went wrong'
+    }
+  },
+  COMPONENTS: {
+    TASKS_LIST: {
+      NO_TASKS: 'No tasks Present'
     }
   }
 };

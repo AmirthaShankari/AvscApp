@@ -54,7 +54,6 @@ const TeamMembersSelection = ({
           keyExtractor={(item) => item.id}
         />
       </View>
-
     ) : null
   );
 };

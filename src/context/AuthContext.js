@@ -17,6 +17,8 @@ const authReducer = (state, action) => {
       return { ...state, authErr: '', authName: action.payload };
     case APP_CONST.AUTH_ERROR:
       return { ...state, authErr: action.payload };
+    case APP_CONST.SIGN_OUT:
+      return { ...state, authName: '' };
     default:
       return { ...state };
   }
@@ -55,8 +57,18 @@ const autoSignIn = (dispatch) => async () => {
   }
 };
 
+// Function to signOut the user
+const signOut = (dispatch) => async () => {
+  try {
+    await AsyncStorage.removeItem(AppConstants.LOCAL_STORAGE.AUTH_INFO);
+    dispatch({ type: APP_CONST.SIGN_OUT });
+  } catch (err) {
+    log.err('Error while performing sign out');
+  }
+};
+
 export const { Context, Provider } = CreateContext(
   authReducer,
   { authName: '', authErr: '' },
-  { signIn, autoSignIn }
+  { signIn, autoSignIn, signOut }
 );

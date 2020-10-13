@@ -4,6 +4,7 @@ export const AppConstants = {
     APP_LOAD: 'AppLoad',
     LOGIN: 'Login',
     HOME: 'Home',
+    USER_PROFILE: 'UserProfile',
     HOME_TABS: {
       ALERTS: {
         ROUTE: 'Alerts',
@@ -45,7 +46,8 @@ export const AppConstants = {
         PWD: 'user'
       },
       UPDATE_NAME: 'updateName',
-      AUTH_ERROR: 'authError'
+      AUTH_ERROR: 'authError',
+      SIGN_OUT: 'signout'
     }
   },
   COMPONENTS: {
