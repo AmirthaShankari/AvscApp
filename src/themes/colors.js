@@ -2,7 +2,7 @@ const colors = {
   black: '#50506e',
   white: '#FFFFFF',
   transparent: 'transparent',
-  semiTransparent: '#00000055',
+  semiTransparent: '#ffffffaa',
   orange: '#D76600',
   grey: '#8a8a8a',
   grey_light: '#cacaca',

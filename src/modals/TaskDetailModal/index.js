@@ -29,6 +29,17 @@ const TaskDetailModal = ({
     </View>
   );
 
+  const renderSubTasks = ({ item }) => (
+    <View style={styles.subTaskWrapper}>
+      <Icon
+        name={(item.done) ? 'checkmark-circle-outline' : 'ellipse-outline'}
+        size={30}
+        color={(item.done) ? Colors.green : Colors.blue_grey}
+      />
+      <Text style={styles.subTask}>{item.title}</Text>
+    </View>
+  );
+
   return (
     <Modal
       animationType="slide"
@@ -39,17 +50,19 @@ const TaskDetailModal = ({
       <TouchableWithoutFeedback onPress={() => modalDismiss()}>
         <View style={styles.modalBg}>
           <View style={styles.modalContent}>
-            <View style={styles.titleWrapper}>
-              <Text style={styles.title}>{task.title}</Text>
-              <Icon
-                name="chatbubble-outline"
-                size={30}
-                color={Colors.grey}
-              />
+            <View style={styles.sectionPadding}>
+              <View style={styles.titleWrapper}>
+                <Text style={styles.title}>{task.title}</Text>
+                <Icon
+                  name="ellipsis-horizontal-outline"
+                  size={30}
+                  color={Colors.blue_grey}
+                />
+              </View>
+              <Text style={styles.createdDate}>{`on ${task.createdDate}`}</Text>
             </View>
-            <Text>on some date time</Text>
             <View style={styles.sectionDivider} />
-            <View style={styles.profileAndEstimWrapper}>
+            <View style={[styles.profileAndEstimWrapper, styles.sectionPadding]}>
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -58,7 +71,30 @@ const TaskDetailModal = ({
                 renderItem={renderProfiles}
                 keyExtractor={(profile) => profile.id}
               />
-              <View />
+              <View style={styles.trackerWrapper}>
+                <View style={styles.timeTracked}>
+                  <Icon
+                    name="time-outline"
+                    size={20}
+                    color={Colors.blue_grey}
+                  />
+                  <Text style={styles.timeTrackedLabel}>Time Tracked:</Text>
+                </View>
+                <Text style={styles.time}>{`${task.timeTracked.hours}:${task.timeTracked.min}h`}</Text>
+              </View>
+            </View>
+            <View style={styles.sectionDivider} />
+            <Text style={[styles.taskDesc, styles.sectionPadding]}>
+              {task.description}
+            </Text>
+            <View style={styles.sectionDivider} />
+            <View style={styles.sectionPadding}>
+              <FlatList
+                scrollEnabled
+                data={task.subTasks}
+                renderItem={renderSubTasks}
+                keyExtractor={(subTask) => subTask.title}
+              />
             </View>
           </View>
         </View>

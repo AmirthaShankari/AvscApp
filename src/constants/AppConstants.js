@@ -195,7 +195,7 @@ export const AppConstants = {
       id: 'Proj2',
       teams: [
         {
-          id: 'T1',
+          id: 'T3',
           name: 'Design Team',
           members: [
             {
@@ -243,7 +243,7 @@ export const AppConstants = {
           ]
         },
         {
-          id: 'T2',
+          id: 'T4',
           name: 'Dev Team',
           members: [
             {

@@ -50,6 +50,7 @@ const TaskScreen = () => {
           (proj) => ({ label: proj.project, value: proj.id })
         );
         setProjects(projectsArr);
+        console.log('setting default proj', projectsArr[0].value);
         setSelectedProject(projectsArr[0].value);
       }
     };
@@ -65,8 +66,10 @@ const TaskScreen = () => {
       if (projectsAndTeams && selectedProject) {
         const selectedProj = projectsAndTeams.find((proj) => proj.id === selectedProject);
         const teamsArr = selectedProj.teams.map((team) => ({ label: team.name, value: team.id }));
+        console.log('set the teams based on the proj', selectedProject, teamsArr);
         setTeams(teamsArr);
-        setSelectedTeam(teamsArr[0].value);
+        const selectTeam = teamsArr[0].value;
+        setSelectedTeam(selectTeam);
       }
     };
     setTeamsBasedOnProj();
@@ -77,7 +80,8 @@ const TaskScreen = () => {
    */
   useEffect(() => {
     const setMembersBasedOnTeam = async () => {
-      if (projectsAndTeams && selectedProject && selectedTeam) {
+      if (projectsAndTeams && selectedTeam && selectedProject) {
+        console.log('set the members based on the proj and team', selectedProject, selectedTeam);
         const selectedProj = projectsAndTeams.find((proj) => proj.id === selectedProject);
         const selectedProjTeam = selectedProj.teams.find((team) => team.id === selectedTeam);
         setTeamMembers(selectedProjTeam.members);
@@ -128,7 +132,7 @@ const TaskScreen = () => {
               teams={teams}
               selectedProject={selectedProject}
               selectedTeam={selectedTeam}
-              onProjectSelection={(proj) => setSelectedProject(proj.value)}
+              onProjectSelection={(proj) => { console.log(proj); setSelectedProject(proj.value); }}
               onTeamSelection={(team) => setSelectedTeam(team.value)}
             />
             <TeamMembersSelection

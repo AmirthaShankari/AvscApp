@@ -20,6 +20,7 @@ const TasksList = ({
 
   // State Declarations
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTask, setSelectedTask] = useState('');
 
   const renderProfiles = ({ item }) => (
     <View style={styles.profileImgWrapper}>
@@ -33,12 +34,10 @@ const TasksList = ({
   );
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity onLongPress={() => setModalVisible(true)} style={styles.taskWrapper}>
-      <TaskDetailModal
-        task={item}
-        modalVisible={modalVisible}
-        modalDismiss={() => setModalVisible(false)}
-      />
+    <TouchableOpacity
+      onLongPress={() => { setSelectedTask(item); setModalVisible(true); }}
+      style={styles.taskWrapper}
+    >
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.textStyle}>{item.shortDate}</Text>
@@ -79,6 +78,14 @@ const TasksList = ({
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
+        {(modalVisible && selectedTask) ? (
+          <TaskDetailModal
+            task={selectedTask}
+            modalVisible={modalVisible}
+            modalDismiss={() => { setModalVisible(false); setSelectedTask(''); }}
+          />
+        )
+          : null}
       </View>
 
     ) : <Text>Noting to render</Text>
