@@ -4,6 +4,7 @@ export const AppConstants = {
     APP_LOAD: 'AppLoad',
     LOGIN: 'Login',
     HOME: 'Home',
+    ORDERS: 'Orders',
     USER_PROFILE: 'UserProfile',
     HOME_TABS: {
       ALERTS: {
@@ -45,12 +46,21 @@ export const AppConstants = {
     },
     AUTH: {
       CREDS: {
-        USER_NAME: 'user',
-        PWD: 'user'
+        USER_PROFILE: {
+          USER_NAME: 'user',
+          PWD: 'user',
+          ROLE: 'USER'
+        },
+        CLIENT_PROFILE: {
+          USER_NAME: 'client',
+          PWD: 'client',
+          ROLE: 'CLIENT'
+        }
+
       },
-      UPDATE_NAME: 'updateName',
+      SIGN_IN: 'signIn',
       AUTH_ERROR: 'authError',
-      SIGN_OUT: 'signout'
+      SIGN_OUT: 'signOut'
     }
   },
   COMPONENTS: {

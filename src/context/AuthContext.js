@@ -13,12 +13,14 @@ const APP_MSG = AppMessages.CONTEXTS.AUTH_CONTEXT;
 
 const authReducer = (state, action) => {
   switch (action.type) {
-    case APP_CONST.UPDATE_NAME:
-      return { ...state, authErr: '', authName: action.payload };
+    case APP_CONST.SIGN_IN:
+      return {
+        ...state, authErr: '', authName: action.payload.userName, role: action.payload.role
+      };
     case APP_CONST.AUTH_ERROR:
       return { ...state, authErr: action.payload };
     case APP_CONST.SIGN_OUT:
-      return { ...state, authName: '' };
+      return { ...state, authName: '', role: '' };
     default:
       return { ...state };
   }
@@ -30,11 +32,17 @@ const signIn = (dispatch) => async (userName, password) => {
     dispatch({ type: APP_CONST.AUTH_ERROR, payload: '' });
     if (!userName || !password) {
       dispatch({ type: APP_CONST.AUTH_ERROR, payload: APP_MSG.FIELDS_REQUIRED });
-    } else if (userName === APP_CONST.CREDS.USER_NAME && password === APP_CONST.CREDS.PWD) {
+    } else if (userName === APP_CONST.CREDS.USER_PROFILE.USER_NAME
+      && password === APP_CONST.CREDS.USER_PROFILE.PWD) {
       log.info('updating logged in username....');
-      const authInfo = { userName };
+      const authInfo = { userName, role: APP_CONST.CREDS.USER_PROFILE.ROLE };
       await AsyncStorage.setItem(AppConstants.LOCAL_STORAGE.AUTH_INFO, JSON.stringify(authInfo));
-      dispatch({ type: APP_CONST.UPDATE_NAME, payload: userName });
+      dispatch({ type: APP_CONST.SIGN_IN, payload: authInfo });
+    } else if (userName === APP_CONST.CREDS.CLIENT_PROFILE.USER_NAME
+      && password === APP_CONST.CREDS.CLIENT_PROFILE.PWD) {
+      const authInfo = { userName, role: APP_CONST.CREDS.CLIENT_PROFILE.ROLE };
+      await AsyncStorage.setItem(AppConstants.LOCAL_STORAGE.AUTH_INFO, JSON.stringify(authInfo));
+      dispatch({ type: APP_CONST.SIGN_IN, payload: authInfo });
     } else {
       dispatch({ type: APP_CONST.AUTH_ERROR, payload: APP_MSG.INVALID_CRED });
     }
@@ -50,7 +58,9 @@ const autoSignIn = (dispatch) => async () => {
     let authInfo = await AsyncStorage.getItem(AppConstants.LOCAL_STORAGE.AUTH_INFO);
     if (authInfo) {
       authInfo = JSON.parse(authInfo);
-      dispatch({ type: APP_CONST.UPDATE_NAME, payload: authInfo.userName });
+      dispatch(
+        { type: APP_CONST.SIGN_IN, payload: { userName: authInfo.userName, role: authInfo.role } }
+      );
     }
   } catch (err) {
     log.err('Error in auto sign in...');
@@ -69,6 +79,6 @@ const signOut = (dispatch) => async () => {
 
 export const { Context, Provider } = CreateContext(
   authReducer,
-  { authName: '', authErr: '' },
+  { authName: '', role: '', authErr: '' },
   { signIn, autoSignIn, signOut }
 );
