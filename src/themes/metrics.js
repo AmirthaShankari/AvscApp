@@ -11,7 +11,7 @@ const metrics = {
   padding_3: 30,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
-  buttonRadius: 4,
+  buttonRadius: 10,
 };
 
 export default metrics;
