@@ -33,6 +33,9 @@ export const AppConstants = {
       },
     }
   },
+  API_ENDPOINTS: {
+    PROJECTS_AND_TEAMS: '/393e6047-4061-49ee-a42b-8de9098ce8d9'
+  },
   LOCAL_STORAGE: {
     AUTH_INFO: 'authInfo'
   },
@@ -90,210 +93,211 @@ export const AppConstants = {
     }
   },
   DATA: {
-    PROJECTS_AND_TEAMS: [{
-      project: 'Project X',
-      id: 'Proj1',
-      teams: [
-        {
-          id: 'T1',
-          name: 'Design Team',
-          members: [
-            {
-              id: 'M2',
-              name: 'Julie',
-              role: 'UX Designer',
-              image:
+    PROJECTS_AND_TEAMS: [
+      {
+        project: 'Project X',
+        id: 'Proj1',
+        teams: [
+          {
+            id: 'T1',
+            name: 'Design Team',
+            members: [
+              {
+                id: 'M2',
+                name: 'Julie',
+                role: 'UX Designer',
+                image:
                 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
-            },
-            {
-              id: 'M4',
-              name: 'Tim',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M4',
+                name: 'Tim',
+                role: 'UX Designer',
+                image:
                 'https://chriskeeney.com/wp-content/uploads/2016/06/la-jolla-busniess-portrait-photography-square.jpg',
-            },
-            {
-              id: 'M5',
-              name: 'Jake Gyllenhal',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M5',
+                name: 'Jake Gyllenhal',
+                role: 'UX Designer',
+                image:
                 'https://chriskeeney.com/wp-content/uploads/2016/06/la-jolla-busniess-portrait-photography-square.jpg',
-            },
-            {
-              id: 'M6',
-              name: 'Julie',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M6',
+                name: 'Julie',
+                role: 'UX Designer',
+                image:
                 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
-            },
-            {
-              id: 'M1',
-              name: 'Sara',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M1',
+                name: 'Sara',
+                role: 'UX Designer',
+                image:
                 'https://images.unsplash.com/photo-1582610285985-a42d9193f2fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            },
-            {
-              id: 'M3',
-              name: 'Jake Gyllenhal',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M3',
+                name: 'Jake Gyllenhal',
+                role: 'UX Designer',
+                image:
                 'https://charlotteknee.com/photography/wp-content/uploads/2015/04/Professional-Profile-Photograph-Corporate-Headshot-copyright-Charlotte-Knee-Photography_00021.jpg',
-            },
-          ]
-        },
-        {
-          id: 'T2',
-          name: 'Dev Team',
-          members: [
-            {
-              id: 'M8',
-              name: 'Sophia',
-              role: 'Developer',
-              image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
-            },
+              },
+            ]
+          },
+          {
+            id: 'T2',
+            name: 'Dev Team',
+            members: [
+              {
+                id: 'M8',
+                name: 'Sophia',
+                role: 'Developer',
+                image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+              },
 
-            {
-              id: 'M9',
-              name: 'Jacob Gyllenhal',
-              role: 'Developer',
-              image:
+              {
+                id: 'M9',
+                name: 'Jacob Gyllenhal',
+                role: 'Developer',
+                image:
                 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
-            },
-            {
-              id: 'M10',
-              name: 'Jane',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M10',
+                name: 'Jane',
+                role: 'Developer',
+                image:
                 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            },
-            {
-              id: 'M11',
-              name: 'Tony',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M11',
+                name: 'Tony',
+                role: 'Developer',
+                image:
                 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            },
-            {
-              id: 'M12',
-              name: 'Jake Gyllenhal',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M12',
+                name: 'Jake Gyllenhal',
+                role: 'Developer',
+                image:
                 'https://chriskeeney.com/wp-content/uploads/2016/06/la-jolla-busniess-portrait-photography-square.jpg',
-            },
-            {
-              id: 'M13',
-              name: 'Julie',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M13',
+                name: 'Julie',
+                role: 'Developer',
+                image:
                 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
-            }
-          ]
-        }
-      ]
-    },
-    {
-      project: 'Project Y',
-      id: 'Proj2',
-      teams: [
-        {
-          id: 'T3',
-          name: 'Design Team',
-          members: [
-            {
-              id: 'M1',
-              name: 'Sara',
-              role: 'UX Designer',
-              image:
+              }
+            ]
+          }
+        ]
+      },
+      {
+        project: 'Project Y',
+        id: 'Proj2',
+        teams: [
+          {
+            id: 'T3',
+            name: 'Design Team',
+            members: [
+              {
+                id: 'M1',
+                name: 'Sara',
+                role: 'UX Designer',
+                image:
                 'https://images.unsplash.com/photo-1582610285985-a42d9193f2fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            },
-            {
-              id: 'M3',
-              name: 'Jake Gyllenhal',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M3',
+                name: 'Jake Gyllenhal',
+                role: 'UX Designer',
+                image:
                 'https://charlotteknee.com/photography/wp-content/uploads/2015/04/Professional-Profile-Photograph-Corporate-Headshot-copyright-Charlotte-Knee-Photography_00021.jpg',
-            },
-            {
-              id: 'M2',
-              name: 'Julie',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M2',
+                name: 'Julie',
+                role: 'UX Designer',
+                image:
                 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
-            },
-            {
-              id: 'M4',
-              name: 'Tim',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M4',
+                name: 'Tim',
+                role: 'UX Designer',
+                image:
                 'https://chriskeeney.com/wp-content/uploads/2016/06/la-jolla-busniess-portrait-photography-square.jpg',
-            },
-            {
-              id: 'M5',
-              name: 'Jake Gyllenhal',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M5',
+                name: 'Jake Gyllenhal',
+                role: 'UX Designer',
+                image:
                 'https://chriskeeney.com/wp-content/uploads/2016/06/la-jolla-busniess-portrait-photography-square.jpg',
-            },
-            {
-              id: 'M6',
-              name: 'Julie',
-              role: 'UX Designer',
-              image:
+              },
+              {
+                id: 'M6',
+                name: 'Julie',
+                role: 'UX Designer',
+                image:
                 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
-            }
-          ]
-        },
-        {
-          id: 'T4',
-          name: 'Dev Team',
-          members: [
-            {
-              id: 'M8',
-              name: 'Sophia',
-              role: 'Developer',
-              image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
-            },
+              }
+            ]
+          },
+          {
+            id: 'T4',
+            name: 'Dev Team',
+            members: [
+              {
+                id: 'M8',
+                name: 'Sophia',
+                role: 'Developer',
+                image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+              },
 
-            {
-              id: 'M9',
-              name: 'Jacob Gyllenhal',
-              role: 'Developer',
-              image:
+              {
+                id: 'M9',
+                name: 'Jacob Gyllenhal',
+                role: 'Developer',
+                image:
                 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
-            },
-            {
-              id: 'M10',
-              name: 'Jane',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M10',
+                name: 'Jane',
+                role: 'Developer',
+                image:
                 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            },
-            {
-              id: 'M11',
-              name: 'Tony',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M11',
+                name: 'Tony',
+                role: 'Developer',
+                image:
                 'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            },
-            {
-              id: 'M12',
-              name: 'Jake Gyllenhal',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M12',
+                name: 'Jake Gyllenhal',
+                role: 'Developer',
+                image:
                 'https://chriskeeney.com/wp-content/uploads/2016/06/la-jolla-busniess-portrait-photography-square.jpg',
-            },
-            {
-              id: 'M13',
-              name: 'Julie',
-              role: 'Developer',
-              image:
+              },
+              {
+                id: 'M13',
+                name: 'Julie',
+                role: 'Developer',
+                image:
                 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
-            }
-          ]
-        }
-      ]
-    }],
+              }
+            ]
+          }
+        ]
+      }],
     TASKS: [
       {
         id: 'Task1',

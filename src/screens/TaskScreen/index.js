@@ -13,12 +13,15 @@ import {
   ProjectAndTeamSelection, TeamMembersSelection, TeamMemberDetails, TasksList
 } from '../../components';
 import { AppConstants } from '../../constants/AppConstants';
+import TasksService from '../../services/TasksService';
+
+const taskService = new TasksService();
 
 const TaskScreen = () => {
   log.info('Task screen rendered...');
 
   // State Declarations
-  const [projectsAndTeams, setProjectsAndTeams] = useState();
+  const [projectsAndTeams, setProjectsAndTeams] = useState('');
   const [teams, setTeams] = useState([]);
   const [projects, setProjects] = useState([]);
   const [teamMembers, setTeamMembers] = useState([]);
@@ -34,9 +37,12 @@ const TaskScreen = () => {
   useFocusEffect(
     React.useCallback(() => {
       const fetchProjectsAndTeams = async () => {
-        setProjectsAndTeams(AppConstants.DATA.PROJECTS_AND_TEAMS);
+        const projectAndTeamResp = await taskService.fetchProjectsAndTeams();
+        setProjectsAndTeams(projectAndTeamResp);
       };
-      fetchProjectsAndTeams();
+      if (!projectsAndTeams) {
+        fetchProjectsAndTeams();
+      }
     }, [projectsAndTeams])
   );
 
@@ -45,8 +51,8 @@ const TaskScreen = () => {
    */
   useEffect(() => {
     const fetchProjectsAndTeams = async () => {
-      if (projectsAndTeams) {
-        const projectsArr = AppConstants.DATA.PROJECTS_AND_TEAMS.map(
+      if (projectsAndTeams && projectsAndTeams.length > 0) {
+        const projectsArr = projectsAndTeams.map(
           (proj) => ({ label: proj.project, value: proj.id })
         );
         setProjects(projectsArr);
@@ -62,7 +68,7 @@ const TaskScreen = () => {
    */
   useEffect(() => {
     const setTeamsBasedOnProj = async () => {
-      if (projectsAndTeams && selectedProject) {
+      if (projectsAndTeams && projectsAndTeams.length && selectedProject) {
         const selectedProj = projectsAndTeams.find((proj) => proj.id === selectedProject);
         const teamsArr = selectedProj.teams.map((team) => ({ label: team.name, value: team.id }));
         setTeams(teamsArr);
