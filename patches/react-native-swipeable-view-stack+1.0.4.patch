@@ -1,0 +1,63 @@
+diff --git a/node_modules/react-native-swipeable-view-stack/index.js b/node_modules/react-native-swipeable-view-stack/index.js
+index a1a117d..15b4c79 100644
+--- a/node_modules/react-native-swipeable-view-stack/index.js
++++ b/node_modules/react-native-swipeable-view-stack/index.js
+@@ -86,11 +86,13 @@ class SwipeableViewStack extends PureComponent<SwipeableViewStackProps, Swipeabl
+             Animated.timing( this.state.viewPan, {
+               toValue: 0,
+               duration: SWIPE_ANIM_DURATION,
++              useNativeDriver: false,
+             } ).start();
+ 
+             Animated.timing( this.state.viewStackedAnim, {
+               toValue: 1,
+               duration: SWIPE_ANIM_DURATION,
++              useNativeDriver: false,
+             } ).start( () => {
+               this.state.viewStackedAnim.setValue( 0 );
+ 
+@@ -111,6 +113,7 @@ class SwipeableViewStack extends PureComponent<SwipeableViewStackProps, Swipeabl
+             Animated.timing( this.state.viewPan, {
+               toValue: 0,
+               duration: SWIPE_ANIM_DURATION,
++              useNativeDriver: true,
+             } ).start();
+           }
+         } else if ( gestureState.dx > -CLICK_THRESHOLD && gestureState.dx < CLICK_THRESHOLD ) {
+@@ -119,6 +122,7 @@ class SwipeableViewStack extends PureComponent<SwipeableViewStackProps, Swipeabl
+           Animated.timing( this.state.viewPan, {
+             toValue: 0,
+             duration: SWIPE_ANIM_DURATION,
++            useNativeDriver: true,
+           } ).start();
+         }
+       },
+@@ -130,11 +134,13 @@ class SwipeableViewStack extends PureComponent<SwipeableViewStackProps, Swipeabl
+             Animated.timing( this.state.viewPan, {
+               toValue: 0,
+               duration: SWIPE_ANIM_DURATION,
++              useNativeDriver: true,
+             } ).start();
+ 
+             Animated.timing( this.state.viewStackedAnim, {
+               toValue: 1,
+               duration: SWIPE_ANIM_DURATION,
++              useNativeDriver: true,
+             } ).start( () => {
+               this.state.viewStackedAnim.setValue( 0 );
+ 
+@@ -153,12 +159,14 @@ class SwipeableViewStack extends PureComponent<SwipeableViewStackProps, Swipeabl
+             Animated.timing( this.state.viewPan, {
+               toValue: 0,
+               duration: SWIPE_ANIM_DURATION,
++              useNativeDriver: true,
+             } ).start();
+           }
+         } else {
+           Animated.timing( this.state.viewPan, {
+             toValue: 0,
+             duration: SWIPE_ANIM_DURATION,
++            useNativeDriver: true,
+           } ).start();
+         }
+       },

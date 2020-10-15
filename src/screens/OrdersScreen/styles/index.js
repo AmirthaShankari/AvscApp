@@ -20,5 +20,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     color: Colors.black,
     textAlign: 'center'
+  },
+  orderInsightWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   }
 });
