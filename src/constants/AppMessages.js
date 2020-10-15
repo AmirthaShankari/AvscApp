@@ -6,6 +6,11 @@ export const AppMessages = {
     },
     USER_PROFILE: {
       UNDER_CONSTRUCTION: 'Page under construction'
+    },
+    ORDERS: {
+      ORDERS: 'Orders',
+      DAYS_ACTIVE: 'days active',
+      ORDERS_RATING: 'Orders rating'
     }
   },
   CONTEXTS: {

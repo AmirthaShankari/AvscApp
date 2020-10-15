@@ -22,13 +22,14 @@ import OptionScreen from '../screens/OptionScreen';
 import TrafficScreen from '../screens/TrafficScreen';
 import { HomeTabBar } from '../components';
 import UserProfileScreen from '../screens/UserProfileScreen';
+import OrdersScreen from '../screens/OrdersScreen';
 
 export default () => {
   const APP_CONST = AppConstants.ROUTES;
 
   // Extracting Context values needed to decide the navigation stack
   const { state: { isAppLoadComplete } } = useContext(AppLoadContext);
-  const { state: { authName } } = useContext(AuthContext);
+  const { state: { authName, role } } = useContext(AuthContext);
 
   // Defining stack navigator
   const Stack = createStackNavigator();
@@ -73,15 +74,21 @@ export default () => {
             headerShown: false,
           }}
         >
-          {isAppLoadComplete ? (authName ? (
-            <>
-              <Stack.Screen name={APP_CONST.HOME} component={TabBarNavigation} />
-              <Stack.Screen name={APP_CONST.USER_PROFILE} component={UserProfileScreen} />
-            </>
-          ) : (
-            <Stack.Screen name={APP_CONST.LOGIN} component={LoginScreen} />
-          )) : (
-            <Stack.Screen name={APP_CONST.APP_LOAD} component={AppLoadScreen} />
+          {isAppLoadComplete ? (authName
+            ? ((role === 'USER') ? (
+              <>
+                <Stack.Screen name={APP_CONST.HOME} component={TabBarNavigation} />
+                <Stack.Screen name={APP_CONST.USER_PROFILE} component={UserProfileScreen} />
+              </>
+            ) : (
+              <>
+                <Stack.Screen name={APP_CONST.ORDERS} component={OrdersScreen} />
+              </>
+            )
+            ) : (
+              <Stack.Screen name={APP_CONST.LOGIN} component={LoginScreen} />
+            )) : (
+              <Stack.Screen name={APP_CONST.APP_LOAD} component={AppLoadScreen} />
           )}
         </Stack.Navigator>
       </NavigationContainer>
