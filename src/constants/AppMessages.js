@@ -10,7 +10,13 @@ export const AppMessages = {
     ORDERS: {
       ORDERS: 'Orders',
       DAYS_ACTIVE: 'days active',
-      ORDERS_RATING: 'Orders rating'
+      ORDERS_RATING: 'Orders rating',
+      ORDER_NUMBER: 'Order Number:',
+      STATUS: 'Status:',
+      ITEMS: 'Items:',
+      SUMMARY: 'Summary:',
+      DELIVERY: 'Delivery:',
+      TRACKING: 'Tracking'
     }
   },
   CONTEXTS: {
