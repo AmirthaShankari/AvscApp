@@ -6,6 +6,7 @@ import ProjectAndTeamSelection from './ProjectAndTeamSelection';
 import TeamMembersSelection from './TeamMembersSelection';
 import TeamMemberDetails from './TeamMemberDetails';
 import TasksList from './TasksList';
+import VendorProfileDetails from './VendorProfileDetails';
 
 export {
   Input,
@@ -14,5 +15,6 @@ export {
   ProjectAndTeamSelection,
   TeamMembersSelection,
   TeamMemberDetails,
-  TasksList
+  TasksList,
+  VendorProfileDetails
 };

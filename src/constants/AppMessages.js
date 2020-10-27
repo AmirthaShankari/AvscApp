@@ -29,6 +29,11 @@ export const AppMessages = {
   COMPONENTS: {
     TASKS_LIST: {
       NO_TASKS: 'No tasks Present'
-    }
+    },
+    VENDOR_PROFILE: {
+      WORK_STATUS: 'Work Status:',
+      CONTRACTS: 'Contracts',
+      MEETINGS: 'Meetings'
+    },
   }
 };
