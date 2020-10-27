@@ -23,6 +23,7 @@ import TrafficScreen from '../screens/TrafficScreen';
 import { HomeTabBar } from '../components';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import OrdersScreen from '../screens/OrdersScreen';
+import VendorProfileScreen from '../screens/VendorProfileScreen';
 
 export default () => {
   const APP_CONST = AppConstants.ROUTES;
@@ -83,6 +84,7 @@ export default () => {
             ) : (
               <>
                 <Stack.Screen name={APP_CONST.ORDERS} component={OrdersScreen} />
+                <Stack.Screen name={APP_CONST.VENDOR_PROFILE} component={VendorProfileScreen} />
               </>
             )
             ) : (

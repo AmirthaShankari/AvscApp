@@ -5,6 +5,7 @@ export const AppConstants = {
     LOGIN: 'Login',
     HOME: 'Home',
     ORDERS: 'Orders',
+    VENDOR_PROFILE: 'VendorProfile',
     USER_PROFILE: 'UserProfile',
     HOME_TABS: {
       ALERTS: {
@@ -103,6 +104,30 @@ export const AppConstants = {
     }
   },
   DATA: {
+    CLIENT_PROFILE: {
+      role: 'Vendor',
+      workStatus: {
+        location: {
+          city: 'Warsaw',
+          country: 'Poland',
+          office: 'IGN Bank',
+        },
+        status: 'Contract signing',
+        totalContracts: 234,
+        totalMeetings: 714,
+      },
+      name: 'Avery Clayton',
+      position: 'B2B Junior Manager',
+      currentMonthData: {
+        month: 'July',
+        year: 2016,
+        netStatus: 7,
+        contracts: 28,
+        meetings: 110,
+        efficiency: 25,
+        notes: 'Ready for promotion next month',
+      },
+    },
     PROJECTS_AND_TEAMS: [
       {
         project: 'Project X',

@@ -1,23 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
-  View, Text, ActivityIndicator, ScrollView
+  View, Text, ActivityIndicator, FlatList
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // App Imports
 import ReactNativeSwipeableViewStack from 'react-native-swipeable-view-stack';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { Context as AuthContext } from '../../context/AuthContext';
 import { Header } from '../../components';
 import { AppMessages } from '../../constants/AppMessages';
 import { styles } from './styles';
-import { Colors, Metrics } from '../../themes';
+import { Colors } from '../../themes';
+import { AppConstants } from '../../constants/AppConstants';
 
 const APP_MSG = AppMessages.SCREENS.ORDERS;
+const APP_CONST = AppConstants;
 
-const dataArray = [1, 2];
-
-const OrdersScreen = () => {
+const OrdersScreen = ({ navigation }) => {
   const [ordersDetail, setOrdersDetail] = useState();
   const { state: { authName } } = useContext(AuthContext);
 
@@ -142,6 +141,7 @@ const OrdersScreen = () => {
         showBack={false}
         showLogo
         showProfile
+        onProfilePress={() => { navigation.navigate(APP_CONST.ROUTES.VENDOR_PROFILE); }}
       />
       {(ordersDetail) ? (
         <View style={styles.ordersScreenWrapper}>
@@ -180,60 +180,6 @@ const OrdersScreen = () => {
               />
             </View>
           </View>
-
-          {/* <View style={styles.orderCard}>
-            <View style={styles.orderCardHeader}>
-              <View>
-                <Text style={styles.cardHeaderLabel}>
-                  {APP_MSG.ORDER_NUMBER}
-                </Text>
-                <Text style={styles.orderNumber}>
-                  {ordersDetail.orders[0].orderNumber}
-                </Text>
-              </View>
-              <View style={styles.statusWrapper}>
-                <Text style={styles.cardHeaderLabel}>
-                  {APP_MSG.STATUS}
-                </Text>
-                <Text style={styles.orderStatus}>
-                  {ordersDetail.orders[0].status}
-                </Text>
-              </View>
-              <View style={styles.logo} />
-            </View>
-            <View style={styles.cardSectionSeparator} />
-            <View style={styles.itemsSummaryWrapper}>
-              <View>
-                <Text style={styles.cardHeading}>{APP_MSG.ITEMS}</Text>
-                <FlatList
-                  data={ordersDetail.orders[0].items}
-                  keyExtractor={((item) => item.id)}
-                  renderItem={({ item }) => renderOrderItems(item)}
-                />
-              </View>
-              <View>
-                <Text style={styles.cardHeading}>{APP_MSG.SUMMARY}</Text>
-                <Text style={styles.totals}>{ordersDetail.orders[0].totals}</Text>
-              </View>
-            </View>
-            <View style={styles.cardSectionSeparator} />
-            <View>
-              <View style={styles.addrAndTracking}>
-                <View>
-                  <Text style={styles.cardHeading}>{APP_MSG.DELIVERY}</Text>
-                  <Text style={styles.items}>{ordersDetail.orders[0].delivery.name}</Text>
-                  <Text style={styles.items}>{ordersDetail.orders[0].delivery.addr1}</Text>
-                  <Text style={styles.items}>{ordersDetail.orders[0].delivery.addr2}</Text>
-                </View>
-                <View>
-                  <View>
-                    <Text style={styles.cardHeading}>{APP_MSG.TRACKING}</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View style={styles.cardSectionSeparator} />
-          </View> */}
         </View>
       ) : (
         <ActivityIndicator style={styles.inlineLoader} />
