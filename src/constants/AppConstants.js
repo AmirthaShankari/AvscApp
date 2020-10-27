@@ -118,6 +118,7 @@ export const AppConstants = {
       },
       name: 'Avery Clayton',
       position: 'B2B Junior Manager',
+      image: 'https://writestylesonline.com/wp-content/uploads/2019/01/What-To-Wear-For-Your-Professional-Profile-Picture-or-Headshot.jpg',
       currentMonthData: {
         month: 'July',
         year: 2016,

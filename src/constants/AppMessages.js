@@ -33,7 +33,9 @@ export const AppMessages = {
     VENDOR_PROFILE: {
       WORK_STATUS: 'Work Status:',
       CONTRACTS: 'Contracts',
-      MEETINGS: 'Meetings'
+      MEETINGS: 'Meetings',
+      NOTES: 'Notes:',
+      EFFICIENCY: 'efficiency'
     },
   }
 };
