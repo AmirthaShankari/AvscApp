@@ -4,6 +4,9 @@ import { Colors, CommonStyles, Metrics } from '../../../themes';
 // eslint-disable-next-line import/prefer-default-export
 export const styles = StyleSheet.create({
   ...CommonStyles.screen,
+  inlineLoader: {
+    ...CommonStyles.loader.inlineLoader
+  },
   mainContainerStack: {
     position: 'relative',
     zIndex: 0
@@ -87,6 +90,7 @@ export const styles = StyleSheet.create({
     ...CommonStyles.fontWeights.w400,
     fontSize: 18,
     color: Colors.royal_blue,
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingVertical: Metrics.padding_3
   }
 });

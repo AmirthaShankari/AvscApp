@@ -36,7 +36,9 @@ export const AppConstants = {
     }
   },
   API_ENDPOINTS: {
-    PROJECTS_AND_TEAMS: '/393e6047-4061-49ee-a42b-8de9098ce8d9'
+    PROJECTS_AND_TEAMS: '/393e6047-4061-49ee-a42b-8de9098ce8d9',
+    TASKS_LIST: '/1d023395-d50f-40a2-b887-f034662b71be',
+    VENDOR_PROFILE_DETAILS: '/e24a8c4e-803a-4190-b131-a7cb2829e042'
   },
   LOCAL_STORAGE: {
     AUTH_INFO: 'authInfo'

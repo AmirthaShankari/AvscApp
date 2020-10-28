@@ -9,11 +9,13 @@ import { useFocusEffect } from '@react-navigation/native';
 // App Imports
 import { styles } from './styles';
 import { log } from '../../utils/logger';
-import {
-  ProjectAndTeamSelection, TeamMembersSelection, TeamMemberDetails, TasksList
-} from '../../components';
-import { AppConstants } from '../../constants/AppConstants';
 import TasksService from '../../services/TasksService';
+import {
+  ProjectAndTeamSelection,
+  TeamMembersSelection,
+  TeamMemberDetails,
+  TasksList
+} from '../../components';
 
 const taskService = new TasksService();
 
@@ -37,8 +39,12 @@ const TaskScreen = () => {
   useFocusEffect(
     React.useCallback(() => {
       const fetchProjectsAndTeams = async () => {
-        const projectAndTeamResp = await taskService.fetchProjectsAndTeams();
-        setProjectsAndTeams(projectAndTeamResp);
+        try {
+          const projectAndTeamResp = await taskService.fetchProjectsAndTeams();
+          setProjectsAndTeams(projectAndTeamResp);
+        } catch (err) {
+          log.error('Error fetching project and team details..', err);
+        }
       };
       if (!projectsAndTeams) {
         fetchProjectsAndTeams();
@@ -100,31 +106,37 @@ const TaskScreen = () => {
   useEffect(() => {
     const setTasksBasedOnMember = async () => {
       if (projectsAndTeams && selectedProject && selectedTeam && selectedMember) {
-        const tasks = AppConstants.DATA.TASKS.filter((task) => task.project === selectedProject);
-        const selectedMemberTasks = tasks.filter((task) => {
-          const isPresent = task.profiles.find((member) => member.id === selectedMember.id);
-          if (isPresent) {
-            return true;
-          }
-          return false;
-        });
-        selectedMemberTasks.forEach((task) => {
-          const completedSubTask = task.subTasks.filter((subTask) => subTask.done);
-          // eslint-disable-next-line no-param-reassign
-          task.totalSubTasks = task.subTasks.length;
-          // eslint-disable-next-line no-param-reassign
-          task.completedTasks = (completedSubTask && completedSubTask.length > 0)
-            ? completedSubTask.length : 0;
-          const date = new Date(task.createdDate);
-          const shortDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-          // eslint-disable-next-line no-param-reassign
-          task.shortDate = shortDate;
-        });
-        setTasksList(selectedMemberTasks);
+        try {
+          const tasksResp = await taskService.fetchTasksList();
+          const tasks = tasksResp.filter((task) => task.project === selectedProject);
+          const selectedMemberTasks = tasks.filter((task) => {
+            const isPresent = task.profiles.find((member) => member.id === selectedMember.id);
+            if (isPresent) {
+              return true;
+            }
+            return false;
+          });
+          selectedMemberTasks.forEach((task) => {
+            const completedSubTask = task.subTasks.filter((subTask) => subTask.done);
+            // eslint-disable-next-line no-param-reassign
+            task.totalSubTasks = task.subTasks.length;
+            // eslint-disable-next-line no-param-reassign
+            task.completedTasks = (completedSubTask && completedSubTask.length > 0)
+              ? completedSubTask.length : 0;
+            const date = new Date(task.createdDate);
+            const shortDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+            // eslint-disable-next-line no-param-reassign
+            task.shortDate = shortDate;
+          });
+          setTasksList(selectedMemberTasks);
+        } catch (err) {
+          log.error('Error fetching tasks list..', err);
+        }
       }
     };
     setTasksBasedOnMember();
   }, [selectedMember]);
+
   return (
     <View style={styles.taskScreenContainer}>
       {(projectsAndTeams) ? (
