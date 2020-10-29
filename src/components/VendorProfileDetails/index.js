@@ -2,9 +2,10 @@
 // React Imports
 import React from 'react';
 import {
-  View, Text
+  View, Text, Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Pie from 'react-native-pie';
 
 // App Imports
 import { log } from '../../utils/logger';
@@ -23,7 +24,15 @@ const VendorProfileDetails = ({
     (vendorDetail) ? (
       <View style={styles.vendorProfileWrapper}>
         <View style={styles.imageAndStatusWrapper}>
-          <View style={styles.imageWrapper} />
+          <View style={styles.imageWrapper}>
+            <Image
+              style={{ flex: 1 }}
+              source={{
+                uri: vendorDetail.image,
+              }}
+              resizeMode="cover"
+            />
+          </View>
           <View>
             <View style={styles.statusWrapper}>
               <Text style={styles.labels}>
@@ -66,6 +75,45 @@ const VendorProfileDetails = ({
             color={Colors.blue_grey}
           />
         </View>
+        <View style={styles.currentMonthStatsWrapper}>
+          <View>
+            <Text style={styles.labels}>{`${vendorDetail.currentMonthData.month} ${vendorDetail.currentMonthData.year}`}</Text>
+            <View style={styles.statsWrapper}>
+              <Text style={styles.statsCount}>{vendorDetail.currentMonthData.contracts}</Text>
+              <Text style={styles.content}>{APP_MSG.CONTRACTS}</Text>
+            </View>
+            <View style={styles.statsWrapper}>
+              <Text style={styles.statsCount}>{vendorDetail.currentMonthData.meetings}</Text>
+              <Text style={styles.content}>{APP_MSG.MEETINGS}</Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.efficiencyNotesWrapper}>
+          <View style={styles.donutChart}>
+            <Pie
+              radius={80}
+              innerRadius={75}
+              sections={[
+                {
+                  percentage: vendorDetail.currentMonthData.efficiency,
+                  color: Colors.royal_blue,
+                },
+              ]}
+              backgroundColor={Colors.blue_grey_light}
+            />
+            <View
+              style={styles.gauge}
+            >
+              <Text style={styles.gaugeText}>{`${vendorDetail.currentMonthData.efficiency}%`}</Text>
+              <Text style={styles.content}>{APP_MSG.EFFICIENCY}</Text>
+            </View>
+          </View>
+          <View style={styles.notesWrapper}>
+            <Text style={styles.labels}>{APP_MSG.NOTES}</Text>
+            <Text style={styles.note}>{vendorDetail.currentMonthData.notes}</Text>
+          </View>
+        </View>
+
       </View>
     ) : null
   );

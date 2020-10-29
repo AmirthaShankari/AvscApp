@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   imageWrapper: {
     width: Metrics.screenWidth * 0.4,
     minHeight: 100,
-    backgroundColor: Colors.blue_grey,
+    backgroundColor: Colors.blue_grey_light,
     padding: Metrics.padding_2,
     borderRadius: 5,
     marginRight: Metrics.margin_2
@@ -87,5 +87,59 @@ export const styles = StyleSheet.create({
     fontSize: 34,
     color: Colors.black,
     paddingVertical: Metrics.padding_1
+  },
+  currentMonthStatsWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'space-between',
+    paddingVertical: Metrics.padding_2
+  },
+  efficiencyNotesWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: Metrics.padding_2
+  },
+  notesWrapper: {
+    width: Metrics.screenWidth * 0.4,
+    alignItems: 'flex-end',
+    paddingRight: Metrics.padding_2
+  },
+  donutChart: {
+    width: 175,
+    alignItems: 'center'
+  },
+  note: {
+    ...CommonStyles.fontWeights.w400,
+    fontSize: 14,
+    textAlign: 'right',
+    color: Colors.black,
+    paddingVertical: Metrics.padding_1
+  },
+  statsWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  statsCount: {
+    ...CommonStyles.fontWeights.w500,
+    fontSize: 16,
+    color: Colors.royal_blue,
+    paddingBottom: Metrics.padding_1 / 2,
+    width: 50
+  },
+  gauge: {
+    position: 'absolute',
+    width: 100,
+    height: 160,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  gaugeText: {
+    backgroundColor: 'transparent',
+    ...CommonStyles.fontWeights.w500,
+    fontSize: 30,
+    color: Colors.royal_blue,
   }
 });

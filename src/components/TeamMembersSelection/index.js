@@ -2,7 +2,7 @@
 // React Imports
 import React from 'react';
 import {
-  View, Image, FlatList, Text, TouchableOpacity
+  View, Image, FlatList, Text, TouchableWithoutFeedback
 } from 'react-native';
 
 // App Imports
@@ -18,7 +18,7 @@ const TeamMembersSelection = ({
 
   const renderItem = ({ item, index }) => (
     <View style={[styles.imageWrapperScale, styles.wrapper]}>
-      <TouchableOpacity onPress={() => { if (index < 4) { setMemberSelection(item); } }}>
+      <TouchableWithoutFeedback onPress={() => { if (index < 4) { setMemberSelection(item); } }}>
         <View
           style={[(selectedMember && selectedMember.id === item.id)
             ? styles.imageWrapperScale : styles.imageWrapper]}
@@ -39,7 +39,7 @@ const TeamMembersSelection = ({
           )
             : null)}
         </View>
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     </View>
   );
 
