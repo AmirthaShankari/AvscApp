@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable no-nested-ternary */
 // React Imports
-import React, { useContext } from 'react';
+import React, { useContext, Suspense, lazy } from 'react';
+import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -11,19 +12,19 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppConstants } from '../constants/AppConstants';
 import { Context as AppLoadContext } from '../context/AppLoadContext';
 import { Context as AuthContext } from '../context/AuthContext';
+import { HomeTabBar } from '../components';
 
 // App Screens Imports
-import LoginScreen from '../screens/LoginScreen';
-import AppLoadScreen from '../screens/AppLoadScreen';
-import AlertsScreen from '../screens/AlertsScreen';
-import BugScreen from '../screens/BugScreen';
-import TaskScreen from '../screens/TaskScreen';
-import OptionScreen from '../screens/OptionScreen';
-import TrafficScreen from '../screens/TrafficScreen';
-import { HomeTabBar } from '../components';
-import UserProfileScreen from '../screens/UserProfileScreen';
-import OrdersScreen from '../screens/OrdersScreen';
-import VendorProfileScreen from '../screens/VendorProfileScreen';
+const LoginScreen = lazy(() => import('../screens/LoginScreen'));
+const AppLoadScreen = lazy(() => import('../screens/AppLoadScreen'));
+const AlertsScreen = lazy(() => import('../screens/AlertsScreen'));
+const BugScreen = lazy(() => import('../screens/BugScreen'));
+const TaskScreen = lazy(() => import('../screens/TaskScreen'));
+const OptionScreen = lazy(() => import('../screens/OptionScreen'));
+const TrafficScreen = lazy(() => import('../screens/TrafficScreen'));
+const UserProfileScreen = lazy(() => import('../screens/UserProfileScreen'));
+const OrdersScreen = lazy(() => import('../screens/OrdersScreen'));
+const VendorProfileScreen = lazy(() => import('../screens/VendorProfileScreen'));
 
 export default () => {
   const APP_CONST = AppConstants.ROUTES;
@@ -69,31 +70,33 @@ export default () => {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          {isAppLoadComplete ? (authName
-            ? ((role === 'USER') ? (
-              <>
-                <Stack.Screen name={APP_CONST.HOME} component={TabBarNavigation} />
-                <Stack.Screen name={APP_CONST.USER_PROFILE} component={UserProfileScreen} />
-              </>
-            ) : (
-              <>
-                <Stack.Screen name={APP_CONST.ORDERS} component={OrdersScreen} />
-                <Stack.Screen name={APP_CONST.VENDOR_PROFILE} component={VendorProfileScreen} />
-              </>
-            )
-            ) : (
-              <Stack.Screen name={APP_CONST.LOGIN} component={LoginScreen} />
-            )) : (
-              <Stack.Screen name={APP_CONST.APP_LOAD} component={AppLoadScreen} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Suspense fallback={<Text>Loading...</Text>}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            {isAppLoadComplete ? (authName
+              ? ((role === 'USER') ? (
+                <>
+                  <Stack.Screen name={APP_CONST.HOME} component={TabBarNavigation} />
+                  <Stack.Screen name={APP_CONST.USER_PROFILE} component={UserProfileScreen} />
+                </>
+              ) : (
+                <>
+                  <Stack.Screen name={APP_CONST.ORDERS} component={OrdersScreen} />
+                  <Stack.Screen name={APP_CONST.VENDOR_PROFILE} component={VendorProfileScreen} />
+                </>
+              )
+              ) : (
+                <Stack.Screen name={APP_CONST.LOGIN} component={LoginScreen} />
+              )) : (
+                <Stack.Screen name={APP_CONST.APP_LOAD} component={AppLoadScreen} />
+            )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Suspense>
     </SafeAreaProvider>
   );
 };
