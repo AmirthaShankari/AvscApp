@@ -107,6 +107,7 @@ const TaskScreen = () => {
     const setTasksBasedOnMember = async () => {
       if (projectsAndTeams && selectedProject && selectedTeam && selectedMember) {
         try {
+          setTasksList([]);
           const tasksResp = await taskService.fetchTasksList();
           const tasks = tasksResp.filter((task) => task.project === selectedProject);
           const selectedMemberTasks = tasks.filter((task) => {

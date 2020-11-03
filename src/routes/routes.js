@@ -2,7 +2,7 @@
 /* eslint-disable no-nested-ternary */
 // React Imports
 import React, { useContext, Suspense, lazy } from 'react';
-import { Text } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -13,6 +13,7 @@ import { AppConstants } from '../constants/AppConstants';
 import { Context as AppLoadContext } from '../context/AppLoadContext';
 import { Context as AuthContext } from '../context/AuthContext';
 import { HomeTabBar } from '../components';
+import { CommonStyles } from '../themes';
 
 // App Screens Imports
 const LoginScreen = lazy(() => import('../screens/LoginScreen'));
@@ -70,7 +71,7 @@ export default () => {
 
   return (
     <SafeAreaProvider>
-      <Suspense fallback={<Text>Loading...</Text>}>
+      <Suspense fallback={<View style={CommonStyles.screen.mainContainer}><ActivityIndicator style={CommonStyles.loader.inlineLoader} /></View>}>
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
