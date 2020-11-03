@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
 // React Imports
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  View, Text
+  View, Text, Animated
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -16,15 +16,23 @@ const TeamMemberDetails = ({
   tasksList
 }) => {
   log.info('Team members details component rendered...');
+  const opacity = new Animated.Value(0);
+  useEffect(() => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
+  }, [tasksList]);
 
   return (
     (selectedMember) ? (
-      <View style={styles.teamMemberDetailsWrapper}>
-        <View style={styles.detailWrapper}>
-          <Text style={styles.tasksCount}>
+      <View style={[styles.teamMemberDetailsWrapper]}>
+        <View style={[styles.detailWrapper, ((tasksList && tasksList.length)) ? { opacity: 1 } : { opacity: 0 }]}>
+          <Animated.Text style={[styles.tasksCount, { opacity }]}>
             {(tasksList && tasksList.length) ? tasksList.length : 0}
-          </Text>
-          <Text style={styles.subDetail}>Tasks</Text>
+          </Animated.Text>
+          <Animated.Text style={[styles.subDetail, { opacity }]}>Tasks</Animated.Text>
         </View>
         <View style={styles.detailWrapper}>
           <Text style={styles.memberName}>
@@ -42,7 +50,6 @@ const TeamMemberDetails = ({
           />
         </View>
       </View>
-
     ) : null
   );
 };
